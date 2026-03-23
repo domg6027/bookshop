@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Page Not Found</title>
-  <link rel="stylesheet" href="https://saphahcentral.github.io/saphah/style-public.css">
+  <title>Page Not Found | DOM Bookshop</title>
+  
+  <!-- Corrected CSS Link for DOM Project -->
+  <link rel="stylesheet" href="https://domg6027.github.io/dom6027/style.css">
+  
   <style>
     /* Local styles for 404 page */
     .not-found {
@@ -13,12 +16,21 @@
     }
     .not-found h1 {
       font-size: 2.5em;
-      color: red;
+      color: #b50000; /* Deep red for the error notice */
     }
     .not-found p {
       font-size: 1.2em;
     }
+    .banner-img {
+      display: block;
+      margin: 15px auto;
+      max-width: 100%;
+      height: auto; 
+    }
   </style>
+
+  <!-- Corrected JS path in HEAD with DEFER -->
+  <script src="https://domg6027.github.io/dom6027/include.js" defer></script>
 </head>
 <body>
 
@@ -29,16 +41,22 @@
   <div id="header-placeholder"></div>
 
   <main class="not-found">
-    <h1>404 – Page Not Found</h1>
-    <p>The page you're looking for doesn't exist or has been moved.</p>
-    <p><a href="index.html">Return to the homepage</a></p>
+    <div class="centered">
+      <!-- Consistent Branding -->
+      <img src="EagleBanner468x60.png" alt="DOM Bookshop" class="banner-img" />
+    </div>
+
+    <h1>404 – Path Not Found</h1>
+    <p>The page or resource you are seeking is not at this location.</p>
+    <p>It may have been moved or the URL might be typed incorrectly.</p>
+    
+    <div class="box" style="margin-top: 20px;">
+      <p><a href="index.html" style="font-weight: bold; color: #b58900;">Return to the DOM Bookshop Homepage</a></p>
+    </div>
   </main>
 
   <!-- Dynamic Footer -->
   <div id="footer-placeholder"></div>
-
-  <!-- Include JS for dynamic header, nav, footer -->
-  <script src="https://saphahcentral.github.io/saphah/includes-public.js"></script>
 
 </body>
 </html>
