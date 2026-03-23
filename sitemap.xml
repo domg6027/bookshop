@@ -1,45 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Main Pages -->
+  <!-- Main Gateway -->
   <url>
-    <loc>https://saphahcentral.github.io/soar/index.html</loc>
+    <loc>https://domg6027.github.io/bookshop/index.html</loc>
+    <lastmod>2024-05-22</lastmod>
     <priority>1.0</priority>
   </url>
 
+  <!-- Shop Catalog (Core Income Source) -->
   <url>
-    <loc>https://saphahcentral.github.io/soar/index2.html</loc>
+    <loc>https://domg6027.github.io/bookshop/bookshop.html</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Site Directory & Info -->
+  <url>
+    <loc>https://domg6027.github.io/bookshop/index2.html</loc>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://saphahcentral.github.io/soar/about.html</loc>
+    <loc>https://domg6027.github.io/bookshop/about.html</loc>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://saphahcentral.github.io/soar/contact.html</loc>
+    <loc>https://domg6027.github.io/bookshop/contact.html</loc>
     <priority>0.8</priority>
   </url>
 
+  <!-- Sales & Product Logic -->
   <url>
-    <loc>https://saphahcentral.github.io/soar/bookshop.html</loc>
-    <priority>0.8</priority>
+    <loc>https://domg6027.github.io/bookshop/sales.html</loc>
+    <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://saphahcentral.github.io/soar/not_found.html</loc>
+    <loc>https://domg6027.github.io/bookshop/salesrotator.html</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Error Page -->
+  <url>
+    <loc>https://domg6027.github.io/bookshop/not_found.html</loc>
     <priority>0.5</priority>
   </url>
 
-  <!-- Optional: static assets if needed (images) -->
+  <!-- Local Assets (Ministry Branding) -->
   <url>
-    <loc>https://cdn-images.imagevenue.com/ab/16/df/ME1AW7GL_o.png</loc>
+    <loc>https://domg6027.github.io/bookshop/EagleBanner468x60.png</loc>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://cdn-images.imagevenue.com/70/bb/3c/ME1AWETZ_o.png</loc>
+    <loc>https://domg6027.github.io/bookshop/EagleBanner125x125.png</loc>
     <priority>0.3</priority>
   </url>
 
