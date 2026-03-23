@@ -5,13 +5,13 @@
   "items": [
     {
       "id": "DOM001",
-      "title": "SAMPLE",
+      "title": "His Name is YAHUSHA",
       "type": "ebook",
       "price": 0.99,
-      "thumb": "https://domg6027.github.io/bookshop/THUMBS/sample.jpg",
-      "pdf": "https://domg6027.github.io/soar2024/PDFS/sample.pdf",
-      "description": "Sample.",
-      "status": "inactive"
+      "thumb": "https://domg6027.github.io/bookshop/THUMBS/DOM001-Yahusha.png",
+      "pdf": "https://domg6027.github.io/soar2024/PDFS/DOM001-Yahusha.pdf",
+      "description": "Discover the true name of the Messiah and why ‘Jesus’ or ‘Yeshua’ are incorrect.",
+      "status": "active"
     }
   ]
 }
