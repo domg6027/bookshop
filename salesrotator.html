@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOAR Featured E-Book</title>
+
+  <link rel="stylesheet" href="https://saphahcentral.github.io/saphah/style-public.css">
+  <script src="https://saphahcentral.github.io/saphah/includes-public.js" defer></script>
+
+  <style>
+    .rotator {
+      text-align: center;
+      margin: 30px;
+    }
+    .rotator img {
+      max-width: 200px;
+      height: auto;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+    }
+    .rotator h3 {
+      margin: 10px 0 5px 0;
+    }
+    .rotator p {
+      margin: 0 0 10px 0;
+    }
+    .rotator a {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: royalblue;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .rotator a:hover {
+      background-color: navy;
+    }
+  </style>
+
+<script defer>
+document.addEventListener("DOMContentLoaded", () => {
+  const rotator = document.getElementById("rotator-placeholder");
+
+  fetch("https://saphahcentral.github.io/soar2024/catalog.json")
+    .then(res => res.json())
+    .then(data => {
+      if (!Array.isArray(data.items) || !data.items.length) throw new Error("No catalog items found");
+
+      const book = data.items[Math.floor(Math.random() * data.items.length)];
+
+      rotator.innerHTML = `
+        <img src="${book.thumb}" alt="${book.title}">
+        <h3>${book.title}</h3>
+        <p>${book.description}</p>
+        <a href="sales.html?code=${book.id}">View / Order Now</a>
+      `;
+    })
+    .catch(err => {
+      console.error(err);
+      rotator.innerText = "Featured item unavailable at this time.";
+    });
+});
+</script>
+</head>
+
+<body>
+
+  <!-- REQUIRED ANCHORS -->
+  <header></header>
+  <nav></nav>
+
+  <main>
+    <div class="rotator" id="rotator-placeholder">
+      Loading featured e-book…
+    </div>
+  </main>
+
+  <footer></footer>
+
+</body>
+</html>

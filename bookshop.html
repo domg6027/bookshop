@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOAR Bookshop</title>
+
+  <link rel="stylesheet" href="https://saphahcentral.github.io/saphah/style-public.css">
+
+  <!-- Dynamic includes -->
+  <script src="https://saphahcentral.github.io/saphah/includes-public.js" defer></script>
+
+  <style>
+    .book-cover { border: 2px solid #ccc; border-radius: 4px; margin-bottom: 10px; width: 150px; height: auto; }
+    .book-block { margin-bottom: 40px; padding-bottom: 10px; border-bottom: 1px dashed #aaa; text-align: center; }
+    .bookshop-header { text-align: center; margin-top: 30px; }
+    .book-btn, .details-btn { margin-top: 10px; display: inline-block; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold; }
+    .book-btn { background-color: #4caf50; color: white; }
+    .book-btn:hover { background-color: #2e5e2e; }
+    .details-btn { background-color: royalblue; color: white; margin-left: 10px; }
+    .details-btn:hover { background-color: navy; }
+    .note { text-align: center; font-style: italic; margin: 20px 0; }
+    .free-resources { text-align: center; margin: 30px 0; }
+    .free-resources a { font-weight: bold; text-decoration: underline; }
+  </style>
+
+  <script defer>
+    async function loadBooks() {
+      try {
+        const res = await fetch('https://saphahcentral.github.io/soar2024/catalog.json');
+        const catalog = await res.json();
+        const container = document.getElementById('books-container');
+
+        catalog.items.forEach(item => {
+          const block = document.createElement('div');
+          block.className = 'book-block';
+
+          const img = document.createElement('img');
+          img.src = item.thumb;
+          img.alt = item.title;
+          img.className = 'book-cover';
+          block.appendChild(img);
+
+          const title = document.createElement('h3');
+          title.textContent = item.title;
+          block.appendChild(title);
+
+          const desc = document.createElement('p');
+          desc.textContent = item.description || '';
+          block.appendChild(desc);
+
+          if(item.price && item.price > 0){
+            const orderLink = document.createElement('a');
+            orderLink.href = `mailto:soar6027@outlook.com?subject=SOAR%20Order&body=Hello,%20I%20would%20like%20to%20order%20${encodeURIComponent(item.title)}`;
+            orderLink.textContent = `Order $${item.price.toFixed(2)} - Contact SOAR to order`;
+            orderLink.className = 'book-btn';
+            block.appendChild(orderLink);
+          }
+
+          // MORE DETAILS link
+          const detailsLink = document.createElement('a');
+          detailsLink.href = `sales.html?code=${item.id}`;
+          detailsLink.textContent = 'MORE DETAILS';
+          detailsLink.className = 'details-btn';
+          block.appendChild(detailsLink);
+
+          container.appendChild(block);
+        });
+
+      } catch(err) {
+        console.error('Error loading catalog:', err);
+        document.getElementById('books-container').innerHTML =
+          '<p style="color:red; text-align:center;">Failed to load catalog.</p>';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadBooks);
+  </script>
+</head>
+
+<body>
+
+  <!-- Dynamic header and nav -->
+  <header></header>
+  <nav></nav>
+
+  <header>
+    <h1 class="bookshop-header">SOAR E-Book Shop</h1>
+  </header>
+
+  <main>
+    <p class="centered">
+      These titles are offered as free resources, faith-based encouragement, or outreach support. Some link to partner ministries. All materials are static and available to read, download, or order manually.
+    </p>
+
+    <!-- Books container -->
+    <div id="books-container"></div>
+
+    <p class="note">New items coming soon!</p>
+
+    <div class="free-resources">
+      <a href="https://drive.google.com/drive/folders/1upF3aMEEsz7bfCH_u95ws0x_DQlNCRyJ?usp=drive_link" target="_blank">
+        FREE RESOURCES – Estcourt Hospice Cancer Support Group Resource Library
+      </a>
+    </div>
+  </main>
+
+  <!-- Dynamic footer -->
+  <footer></footer>
+
+</body>
+</html>
