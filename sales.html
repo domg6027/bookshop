@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SOAR E-Book Details</title>
+  <title>Booklet Details | DOM Bookshop</title>
 
-  <link rel="stylesheet" href="https://saphahcentral.github.io/saphah/style-public.css">
+  <!-- Corrected CSS Link -->
+  <link rel="stylesheet" href="https://domg6027.github.io/dom6027/style.css">
 
-  <!-- Dynamic includes -->
-  <script src="https://saphahcentral.github.io/saphah/includes-public.js" defer></script>
+  <!-- Corrected JS path in HEAD with DEFER -->
+  <script src="https://domg6027.github.io/dom6027/include.js" defer></script>
 
   <style>
     .product-wrapper {
@@ -17,70 +18,79 @@
       padding: 20px;
       text-align: center;
     }
-    .product-wrapper img {
+    .product-wrapper img.main-thumb {
       max-width: 250px;
       height: auto;
       margin-bottom: 20px;
+      border: 3px solid #b58900;
       border-radius: 6px;
     }
     .price {
-      font-size: 1.5em;
+      font-size: 1.8em;
       font-weight: bold;
       margin: 15px 0;
-      color: #2b6cb0;
+      color: #b58900; /* Paleo Gold */
     }
     .buy-btn, .read-btn {
       display: inline-block;
-      margin-top: 15px;
+      margin: 10px;
       padding: 12px 28px;
-      background-color: royalblue;
+      background-color: #4caf50;
       color: #fff;
       text-decoration: none;
       font-size: 1.1em;
       border-radius: 6px;
+      font-weight: bold;
     }
-    .read-btn { background-color: darkgreen; }
+    .read-btn { background-color: #2b6cb0; }
+    .buy-btn:hover { background-color: #2e5e2e; }
     .error {
       color: red;
       font-size: 1.2em;
       margin-top: 50px;
     }
+    .banner-img { display: block; margin: 15px auto; max-width: 100%; height: auto; }
   </style>
 
   <script defer>
-    // Extract product from catalog.json and render page
     async function loadProduct() {
       const params = new URLSearchParams(window.location.search);
       const productId = params.get('code');
       const container = document.getElementById('product');
 
       if (!productId) {
-        container.innerHTML = `<p class="error">No product specified.</p>`;
+        container.innerHTML = `<p class="error">No item specified.</p>`;
         return;
       }
 
       try {
-        const res = await fetch('https://saphahcentral.github.io/soar2024/catalog.json');
+        // Fetching from LOCAL catalog.json
+        const res = await fetch('catalog.json');
         const catalog = await res.json();
 
+        // Finding product in the .items array
         const product = catalog.items.find(p => p.id === productId);
 
         if (!product) {
-          container.innerHTML = `<p class="error">Product not found.</p>`;
+          container.innerHTML = `<p class="error">Resource not found in the Ancient Paths.</p>`;
           return;
         }
 
         container.innerHTML = `
           <h2>${product.title}</h2>
-          <img src="${product.thumb}" alt="${product.title}">
-          <p>${product.description}</p>
+          <img src="${product.thumb}" alt="${product.title}" class="main-thumb">
+          <p style="font-size: 1.2em; max-width: 700px; margin: 0 auto;">${product.description}</p>
           <div class="price">$${product.price.toFixed(2)}</div>
-          <a href="${product.pdf}" target="_blank" rel="noopener noreferrer" class="read-btn">READ ONLINE</a>
-          <a href="mailto:soar6027@outlook.com?subject=SOAR%20Order&body=Hello,%20I%20would%20like%20to%20order%20${encodeURIComponent(product.title)}" target="_blank" rel="noopener noreferrer" class="buy-btn">Contact SOAR to order</a>
+          
+          <a href="${product.pdf}" target="_blank" rel="noopener noreferrer" class="read-btn">READ ONLINE / DOWNLOAD</a>
+          
+          <br>
+          
+          <a href="mailto:derech-olam-6027@outlook.com?subject=DOM%20Booklet%20Order&body=Shalom,%20I%20would%20like%20to%20order%20the%20following%20resource:%20${encodeURIComponent(product.title)}" class="buy-btn">Contact DOM to Order</a>
         `;
       } catch (err) {
         console.error(err);
-        container.innerHTML = `<p class="error">Unable to load product.</p>`;
+        container.innerHTML = `<p class="error">System error: Unable to load the Ancient Paths catalog.</p>`;
       }
     }
 
@@ -90,19 +100,20 @@
 
 <body>
 
-  <!-- Dynamic Header and Nav -->
-  <header></header>
-  <nav></nav>
+  <div id="nav-placeholder"></div>
+  <div id="header-placeholder"></div>
 
-  <!-- Product container -->
   <main>
+    <div class="centered">
+      <img src="EagleBanner468x60.png" alt="DOM Bookshop" class="banner-img" />
+    </div>
+
     <div class="product-wrapper" id="product">
-      Loading e-book details…
+      Loading Paleo-Messianic resource details…
     </div>
   </main>
 
-  <!-- Dynamic Footer -->
-  <footer></footer>
+  <div id="footer-placeholder"></div>
 
 </body>
 </html>
