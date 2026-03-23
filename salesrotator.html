@@ -3,63 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SOAR Featured E-Book</title>
+  <title>Featured Resource | DOM Bookshop</title>
 
-  <link rel="stylesheet" href="https://saphahcentral.github.io/saphah/style-public.css">
-  <script src="https://saphahcentral.github.io/saphah/includes-public.js" defer></script>
+  <!-- Corrected CSS Link -->
+  <link rel="stylesheet" href="https://domg6027.github.io/dom6027/style.css">
+  
+  <!-- Corrected JS path in HEAD with DEFER -->
+  <script src="https://domg6027.github.io/dom6027/include.js" defer></script>
 
   <style>
     .rotator {
       text-align: center;
-      margin: 30px;
+      margin: 30px auto;
+      padding: 20px;
+      border: 1px solid #eee;
+      max-width: 500px;
     }
     .rotator img {
       max-width: 200px;
       height: auto;
-      border: 2px solid #ccc;
+      border: 2px solid #b58900;
       border-radius: 5px;
     }
-    .rotator h3 {
-      margin: 10px 0 5px 0;
-    }
-    .rotator p {
-      margin: 0 0 10px 0;
-    }
+    .rotator h3 { margin: 15px 0 5px 0; }
+    .rotator p { margin: 0 0 15px 0; font-style: italic; }
     .rotator a {
       display: inline-block;
-      padding: 8px 16px;
-      background-color: royalblue;
+      padding: 10px 20px;
+      background-color: #b58900;
       color: white;
       border-radius: 5px;
       text-decoration: none;
       font-weight: bold;
     }
-    .rotator a:hover {
-      background-color: navy;
-    }
+    .banner-img { display: block; margin: 10px auto; max-width: 100%; height: auto; }
   </style>
 
 <script defer>
 document.addEventListener("DOMContentLoaded", () => {
   const rotator = document.getElementById("rotator-placeholder");
 
-  fetch("https://saphahcentral.github.io/soar2024/catalog.json")
+  // Fetching from LOCAL catalog.json
+  fetch("catalog.json")
     .then(res => res.json())
     .then(data => {
-      if (!Array.isArray(data.items) || !data.items.length) throw new Error("No catalog items found");
+      if (!Array.isArray(data.items) || !data.items.length) throw new Error("No items found");
 
+      // Select a random book from the items array
       const book = data.items[Math.floor(Math.random() * data.items.length)];
 
       rotator.innerHTML = `
         <img src="${book.thumb}" alt="${book.title}">
         <h3>${book.title}</h3>
-        <p>${book.description}</p>
+        <p>${book.description.substring(0, 100)}...</p>
         <a href="sales.html?code=${book.id}">View / Order Now</a>
       `;
     })
     .catch(err => {
       console.error(err);
-      rotator.innerText = "Featured item unavailable at this time.";
+      rotator.innerText = "Featured Path currently unavailable.";
     });
 });
 </script>
@@ -67,17 +69,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <body>
 
-  <!-- REQUIRED ANCHORS -->
-  <header></header>
-  <nav></nav>
+  <div id="nav-placeholder"></div>
+  <div id="header-placeholder"></div>
 
   <main>
+    <div class="centered">
+      <img src="EagleBanner125x125.png" alt="DOM Logo" style="width:80px; height:auto; margin-top:20px;">
+    </div>
+
     <div class="rotator" id="rotator-placeholder">
-      Loading featured e-book…
+      Seeking the Ancient Paths…
     </div>
   </main>
 
-  <footer></footer>
+  <div id="footer-placeholder"></div>
 
 </body>
 </html>
