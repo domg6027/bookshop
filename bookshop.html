@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SOAR Bookshop</title>
+  <title>Bookshop Catalog – DOM Bookshop</title>
 
-  <link rel="stylesheet" href="https://saphahcentral.github.io/saphah/style-public.css">
+  <!-- Corrected CSS Link for DOM Project -->
+  <link rel="stylesheet" href="https://domg6027.github.io/dom6027/style.css">
 
-  <!-- Dynamic includes -->
-  <script src="https://saphahcentral.github.io/saphah/includes-public.js" defer></script>
+  <!-- Dynamic Include JS (HEAD with DEFER) -->
+  <script src="https://domg6027.github.io/dom6027/include.js" defer></script>
 
   <style>
+    /* Local styles for catalog logic */
     .book-cover { border: 2px solid #ccc; border-radius: 4px; margin-bottom: 10px; width: 150px; height: auto; }
     .book-block { margin-bottom: 40px; padding-bottom: 10px; border-bottom: 1px dashed #aaa; text-align: center; }
     .bookshop-header { text-align: center; margin-top: 30px; }
@@ -22,12 +24,14 @@
     .note { text-align: center; font-style: italic; margin: 20px 0; }
     .free-resources { text-align: center; margin: 30px 0; }
     .free-resources a { font-weight: bold; text-decoration: underline; }
+    .banner-img { display: block; margin: 15px auto; max-width: 100%; height: auto; }
   </style>
 
   <script defer>
     async function loadBooks() {
       try {
-        const res = await fetch('https://saphahcentral.github.io/soar2024/catalog.json');
+        // Points to the local catalog.json in your new bookshop repo
+        const res = await fetch('catalog.json'); 
         const catalog = await res.json();
         const container = document.getElementById('books-container');
 
@@ -51,13 +55,13 @@
 
           if(item.price && item.price > 0){
             const orderLink = document.createElement('a');
-            orderLink.href = `mailto:soar6027@outlook.com?subject=SOAR%20Order&body=Hello,%20I%20would%20like%20to%20order%20${encodeURIComponent(item.title)}`;
-            orderLink.textContent = `Order $${item.price.toFixed(2)} - Contact SOAR to order`;
+            orderLink.href = `mailto:derech-olam-6027@outlook.com?subject=DOM%20Order&body=Hello,%20I%20would%20like%20to%20order%20${encodeURIComponent(item.title)}`;
+            orderLink.textContent = `Order $${item.price.toFixed(2)} - Contact DOM to order`;
             orderLink.className = 'book-btn';
             block.appendChild(orderLink);
           }
 
-          // MORE DETAILS link
+          // MORE DETAILS link (points to your local sales.html)
           const detailsLink = document.createElement('a');
           detailsLink.href = `sales.html?code=${item.id}`;
           detailsLink.textContent = 'MORE DETAILS';
@@ -70,7 +74,7 @@
       } catch(err) {
         console.error('Error loading catalog:', err);
         document.getElementById('books-container').innerHTML =
-          '<p style="color:red; text-align:center;">Failed to load catalog.</p>';
+          '<p style="color:red; text-align:center;">Failed to load the Ancient Paths catalog.</p>';
       }
     }
 
@@ -80,33 +84,42 @@
 
 <body>
 
-  <!-- Dynamic header and nav -->
-  <header></header>
-  <nav></nav>
+  <!-- Dynamic Navigation -->
+  <div id="nav-placeholder"></div>
 
-  <header>
-    <h1 class="bookshop-header">SOAR E-Book Shop</h1>
-  </header>
+  <!-- Dynamic Header -->
+  <div id="header-placeholder"></div>
 
   <main>
+    <div class="centered">
+      <!-- Local Long Banner Branding -->
+      <img src="EagleBanner468x60.png" alt="DOM Bookshop" class="banner-img" />
+    </div>
+
+    <h1 class="bookshop-header">DOM Paleo-Messianic Shop</h1>
+
     <p class="centered">
-      These titles are offered as free resources, faith-based encouragement, or outreach support. Some link to partner ministries. All materials are static and available to read, download, or order manually.
+      These titles are offered as Paleo-Messianic resources and outreach support. 
+      Every purchase contributes to the mission of <strong>Derech Olam Ministries Int'l</strong>.
+      All materials are available to read, download, or order via manual request.
     </p>
 
     <!-- Books container -->
-    <div id="books-container"></div>
+    <div id="books-container">
+        <p class="centered">Loading Catalog...</p>
+    </div>
 
-    <p class="note">New items coming soon!</p>
+    <p class="note">New Ancient Path resources coming soon!</p>
 
     <div class="free-resources">
       <a href="https://drive.google.com/drive/folders/1upF3aMEEsz7bfCH_u95ws0x_DQlNCRyJ?usp=drive_link" target="_blank">
-        FREE RESOURCES – Estcourt Hospice Cancer Support Group Resource Library
+        FREE RESOURCES – Paleo-Messianic Resource Library
       </a>
     </div>
   </main>
 
-  <!-- Dynamic footer -->
-  <footer></footer>
+  <!-- Dynamic Footer -->
+  <div id="footer-placeholder"></div>
 
 </body>
 </html>
