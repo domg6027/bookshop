@@ -52,50 +52,74 @@
     .banner-img { display: block; margin: 15px auto; max-width: 100%; height: auto; }
   </style>
 
-  <script defer>
-    async function loadProduct() {
-      const params = new URLSearchParams(window.location.search);
-      const productId = params.get('code');
-      const container = document.getElementById('product');
+<script defer>
+async function loadProduct() {
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get('code');
+  const container = document.getElementById('product');
 
-      if (!productId) {
-        container.innerHTML = `<p class="error">No item specified.</p>`;
-        return;
-      }
+  if (!productId) {
+    container.innerHTML = `<p class="error">No item specified.</p>`;
+    return;
+  }
 
-      try {
-        // Fetching from LOCAL catalog.json
-        const res = await fetch('catalog.json');
-        const catalog = await res.json();
+  try {
+    // Fetching from catalog.json
+    const res = await fetch('https://domg6027.github.io/bookshop/catalog.json');
+    const catalog = await res.json();
 
-        // Finding product in the .items array
-        const product = catalog.items.find(p => p.id === productId);
+    // Finding product in the .items array
+    const product = catalog.items.find(p => p.id === productId);
 
-        if (!product) {
-          container.innerHTML = `<p class="error">Resource not found in the Ancient Paths.</p>`;
-          return;
-        }
-
-        container.innerHTML = `
-          <h2>${product.title}</h2>
-          <img src="${product.thumb}" alt="${product.title}" class="main-thumb">
-          <p style="font-size: 1.2em; max-width: 700px; margin: 0 auto;">${product.description}</p>
-          <div class="price">$${product.price.toFixed(2)}</div>
-          
-          <a href="${product.pdf}" target="_blank" rel="noopener noreferrer" class="read-btn">READ ONLINE / DOWNLOAD</a>
-          
-          <br>
-          
-          <a href="mailto:derech-olam-6027@outlook.com?subject=DOM%20Booklet%20Order&body=Shalom,%20I%20would%20like%20to%20order%20the%20following%20resource:%20${encodeURIComponent(product.title)}" class="buy-btn">Contact DOM to Order</a>
-        `;
-      } catch (err) {
-        console.error(err);
-        container.innerHTML = `<p class="error">System error: Unable to load the Ancient Paths catalog.</p>`;
-      }
+    if (!product) {
+      container.innerHTML = `<p class="error">Resource not found in the Ancient Paths.</p>`;
+      return;
     }
 
-    document.addEventListener('DOMContentLoaded', loadProduct);
-  </script>
+    // Build PayPal.me link with dynamic price and product ID
+    const paypalLink = `https://www.paypal.me/swdb2018/${product.price}?note=${encodeURIComponent(product.id)}`;
+
+    // Render product details with PayPal button
+    container.innerHTML = `
+      <h2>${product.title}</h2>
+      <img src="${product.thumb}" alt="${product.title}" class="main-thumb">
+      <p style="font-size: 1.2em; max-width: 700px; margin: 0 auto;">${product.description}</p>
+      <div class="price">$${product.price.toFixed(2)}</div>
+      
+      <a href="${product.pdf}" target="_blank" rel="noopener noreferrer" class="read-btn">READ ONLINE / DOWNLOAD</a>
+      
+      <br><br>
+      
+      <a href="${paypalLink}" target="_blank" rel="noopener noreferrer" class="buy-btn" 
+         style="
+           display: inline-block;
+           background-color: #0070ba;
+           color: #fff;
+           font-weight: bold;
+           padding: 12px 24px;
+           text-decoration: none;
+           border-radius: 6px;
+           font-size: 1.1em;
+           text-align: center;
+           margin: 10px 0;
+         ">
+        Pay $${product.price.toFixed(2)} via PayPal
+      </a>
+      
+      <p style="font-size: 0.9em; max-width: 700px; margin: 5px auto;">
+        Payments are processed via PayPal to the ministry’s ambassador managing this resource. 
+        Note the company name is <strong>Saphah Central Business Services inc. Derech Olam Ministries</strong> 
+        and is managed by <strong>M C Sampson</strong>.
+      </p>
+    `;
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = `<p class="error">System error: Unable to load the Ancient Paths catalog.</p>`;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadProduct);
+</script>
 </head>
 
 <body>
